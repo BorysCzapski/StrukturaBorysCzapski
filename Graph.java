@@ -26,7 +26,7 @@ public class Graph {
             Vertex vertexAim = findVertex(aim);
 
             if (vertexSource == null || vertexAim == null) {
-                System.out.println("Wierzchołek o podanym identyfikatorze nie istnieje");
+                System.out.println("Wierzchołek o podanym identyfikatorze " + vertexSource+ " nie istnieje");
             } else {
 
                 vertexSource.addEdge(new Edge(weight, aim, source));
