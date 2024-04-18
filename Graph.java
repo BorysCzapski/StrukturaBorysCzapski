@@ -92,14 +92,13 @@ public class Graph {
         int V = vertexes.size();
         ArrayList<KruskalsMST.Edge> graphEdges = new ArrayList<>();
 
-        // Convert graph edges to Kruskal's algorithm edges
+
         for (Vertex vertex : vertexes) {
             for (Edge edge : vertex.edges) {
                 graphEdges.add(new KruskalsMST.Edge(edge.source, edge.aim, edge.weight));
             }
         }
 
-        // Sort the edges in non-decreasing order
         graphEdges.sort(new Comparator<KruskalsMST.Edge>() {
             @Override
             public int compare(KruskalsMST.Edge o1, KruskalsMST.Edge o2) {
