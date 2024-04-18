@@ -1,4 +1,8 @@
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.List;
+
 
 public class Graph {
 
@@ -58,10 +62,12 @@ public class Graph {
 
         int id;
         LinkedList<Edge> edges;
+        boolean visited;
 
         public Vertex(int id) {
             this.id = id;
             edges = new LinkedList<>();
+            this.visited = false;
         }
 
         public void addEdge(Edge connection) {
@@ -81,5 +87,27 @@ public class Graph {
             this.aim = aim;
         }
     }
-}
 
+    public void findMinimumSpanningTree() {
+        int V = vertexes.size();
+        ArrayList<KruskalsMST.Edge> graphEdges = new ArrayList<>();
+
+        // Convert graph edges to Kruskal's algorithm edges
+        for (Vertex vertex : vertexes) {
+            for (Edge edge : vertex.edges) {
+                graphEdges.add(new KruskalsMST.Edge(edge.source, edge.aim, edge.weight));
+            }
+        }
+
+        // Sort the edges in non-decreasing order
+        graphEdges.sort(new Comparator<KruskalsMST.Edge>() {
+            @Override
+            public int compare(KruskalsMST.Edge o1, KruskalsMST.Edge o2) {
+                return o1.weight - o2.weight;
+            }
+        });
+
+        KruskalsMST.kruskals(V, graphEdges);
+    }
+
+}
