@@ -13,9 +13,10 @@ public class Main {
         graf.addEdge(2, 1, 3);
         graf.addEdge(7, 1, 2);
         graf.addEdge(6, 2, 3);
-        graf.addEdge(6, 4, 3);
-
+        graf.addEdge(6, 0, 3);
 
         graf.printGraph();
+
+        graf.findMinimumSpanningTree();
     }
 }
