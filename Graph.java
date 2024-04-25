@@ -63,11 +63,13 @@ public class Graph {
         int id;
         LinkedList<Edge> edges;
         boolean visited;
+        int color;
 
         public Vertex(int id) {
             this.id = id;
             edges = new LinkedList<>();
             this.visited = false;
+            this.color = -1;
         }
 
         public void addEdge(Edge connection) {
@@ -107,6 +109,29 @@ public class Graph {
         });
 
         KruskalsMST.kruskals(V, graphEdges);
+    }
+
+    public int findChromaticNumber() {
+        int numColors = 0;
+        for (Vertex vertex : vertexes) {
+            if (!vertex.visited) {
+                vertex.color = colorUtil(vertex, numColors);
+                numColors = Math.max(numColors, vertex.color + 1);
+            }
+        }
+        return numColors;
+    }
+
+    private int colorUtil(Vertex vertex, int currentColor) {
+        vertex.visited = true;
+        for (Edge edge : vertex.edges) {
+            Vertex neighbor = findVertex(edge.aim);
+            if (!neighbor.visited && neighbor.color == currentColor) {
+                currentColor++;
+                currentColor = colorUtil(neighbor, currentColor);
+            }
+        }
+        return currentColor;
     }
 
 }
