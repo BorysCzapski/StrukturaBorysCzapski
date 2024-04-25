@@ -18,5 +18,8 @@ public class Main {
         graf.printGraph();
 
         graf.findMinimumSpanningTree();
+
+        int chromaticNumber = graf.findChromaticNumber();
+        System.out.println("Chromatic number of the graph: " + chromaticNumber);
     }
 }
